@@ -27,16 +27,20 @@ app.get("/api/hello", function (req, res) {
 app.get('/api/:timeStamp',async (req,res)=>{
   try{
     let {timeStamp} = req.params;
+    let result = {"unix":(new Date()).getTime(),"utc":new Date()}
     if(!timeStamp){
-      throw {message:'Time staps is required',status:400}
+      return res.status(200).json(result);
     }
     timeStamp = isNaN(+timeStamp) ? timeStamp : +timeStamp; 
     let date = new Date(timeStamp);
-    let result = {"unix":date.getTime(),"utc":`${date}`}
+    if(date == "Invalid Date"){
+      throw {message:'Invalid Date',status:400};
+    }
+    result = {"unix":date.getTime(),"utc":`${date.toUTCString()}`}
     return res.status(200).json(result);
 
   }catch(error){
-    return res.status(error.status || 500).json({message:error.message})
+    return res.status(error.status || 500).json({error:error.message})
   }
 })
 
