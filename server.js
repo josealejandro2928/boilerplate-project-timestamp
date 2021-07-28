@@ -57,6 +57,8 @@ app.get('/api',async (req,res)=>{
 
 // listen for requests :)
 process.env.PORT = 4000;
+const VERSION = 1.1;
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
+  console.log(`VERSION APP ${VERSION}`);
 });
