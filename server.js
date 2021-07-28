@@ -11,7 +11,8 @@ var cors = require('cors');
 app.use(cors({optionsSuccessStatus: 200}));  // some legacy browsers choke on 204
 
 // http://expressjs.com/en/starter/static-files.html
-app.use(express.static('public'));
+const path = require('path');
+app.use('/', express.static(path.join(__dirname + '/public')));
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (req, res) {
@@ -44,6 +45,14 @@ app.get('/api/:timeStamp',async (req,res)=>{
   }
 })
 
+app.get('/api',async (req,res)=>{
+  try{
+    let result = {"unix":(new Date()).getTime(),"utc":(new Date()).toUTCString()}
+    return res.status(200).json(result);
+  }catch(error){
+    return res.status(error.status || 500).json({error:error.message})
+  }
+})
 
 
 // listen for requests :)
