@@ -1,0 +1,24 @@
+{
+	"name": "boilerplate-project-timestamp",
+	"version": "0.0.1",
+	"description": "An FCC Backend Challenge",
+	"main": "server.js",
+	"author": "Jose Alejandro Concepcion",
+	"scripts": {
+		"start": "node server.js"
+	},
+	"dependencies": {
+		"express": "^4.12.4",
+		"cors": "^2.8.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://githost.com/camper/repo.git"
+	},
+	"keywords": [
+		"node",
+		"express",
+		"freecodecamp"
+	],
+	"license": "MIT"
+}
